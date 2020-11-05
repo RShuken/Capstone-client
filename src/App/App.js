@@ -38,6 +38,7 @@ class App extends Component {
   }
 
   handleAddFolder = (folder) => {
+    console.log('this is the folder being passed into the addfolder function', folder)
     this.setState({
       folders: [...this.state.folders, folder],
     });
@@ -50,7 +51,6 @@ class App extends Component {
   };
 
   handleDeleteNote = (noteId) => {
-    console.log("this is the noteId", noteId);
     this.setState({
       notes: this.state.notes.filter((note) => note.id !== noteId),
     });
