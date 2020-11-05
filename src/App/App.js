@@ -38,7 +38,6 @@ class App extends Component {
   }
 
   handleAddFolder = (folder) => {
-    console.log('this is the folder being passed into the addfolder function', folder)
     this.setState({
       folders: [...this.state.folders, folder],
     });
@@ -90,7 +89,6 @@ class App extends Component {
       addNote: this.handleAddNote,
       deleteNote: this.handleDeleteNote,
     };
-    console.log('this is the state', this.state)
     return (
       <ApiContext.Provider value={value}>
         <div className="App">
