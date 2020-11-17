@@ -1,107 +1,133 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NoteListNav from "../NoteListNav/NoteListNav";
-import NotePageNav from "../NotePageNav/NotePageNav";
-import NoteListMain from "../NoteListMain/NoteListMain";
-import NotePageMain from "../NotePageMain/NotePageMain";
-import AddFolder from "../AddFolder/AddFolder";
-import AddNote from "../AddNote/AddNote";
-import ApiContext from "../ApiContext";
+import { Router, Switch } from "react-router";
+import { createBrowserHistory } from "history";
+import Header from "../components/Header";
+import Registration from "../pages/Registration";
+import Login from "../pages/Login";
+import HomePage from "../pages/HomePage";
+import ConnectionsDashboard from "../pages/ConnectionsDashboard";
+import PrivateRoute from "../components/PrivateRoute";
+import Context from "../ApiContext";
 import config from "../config";
 import "./App.css";
 
+const history = createBrowserHistory();
+
 class App extends Component {
   state = {
-    notes: [],
-    folders: [],
+    currentUser: {},
+    currentUsersConnections: [],
+    currentUserProfile: {},
+    getUserAuthInfo: () => {
+      const user = JSON.parse(sessionStorage.getItem("currentUser")) || {};
+      return user;
+    },
+    users: [],
+    user_profiles: [],
+    user_connections: [],
+    addUser: () => {},
+    addProfile: () => {},
+    addConnection: () => {},
+    deleteUser: () => {},
+    deleteProfile: () => {},
+    deleteConnection: () => {},
+    updateUser: () => {},
+    updateProfile: () => {},
+    updateConnection: () => {},
   };
 
   componentDidMount() {
     Promise.all([
-      fetch(`${config.API_ENDPOINT}/api/notes`),
-      fetch(`${config.API_ENDPOINT}/api/folders`),
+      fetch(`${config.API_ENDPOINT}/api/public`),
+      // fetch(`${config.API_ENDPOINT}/api/connections`),
+      // fetch(`${config.API_ENDPOINT}/api/user_profiles`),
     ])
-      .then(([notesRes, foldersRes]) => {
-        if (!notesRes.ok) return notesRes.json().then((e) => Promise.reject(e));
-        if (!foldersRes.ok)
-          return foldersRes.json().then((e) => Promise.reject(e));
-
-        return Promise.all([notesRes.json(), foldersRes.json()]);
+      .then(([usersRes]) => {
+        if (!usersRes.ok) return usersRes.json().then((e) => Promise.reject(e));
+        // if (!userConnectionsRes.ok)
+        //   return userConnectionsRes.json().then((e) => Promise.reject(e));
+        // if (!userProfileRes.ok)
+        //   return userProfileRes.json().then((e) => Promise.reject(e));
+        return Promise.all([
+          usersRes.json(),
+          // userConnectionsRes.json(),
+          // userProfileRes.json(),
+        ]);
       })
-      .then(([notes, folders]) => {
-        this.setState({ notes, folders });
+      .then(([users]) => {
+        this.setState({ users });
+        console.log(
+          "this is after the state and been updated with the users",
+          this.state.users
+        );
       })
       .catch((error) => {
         console.error({ error });
       });
   }
 
-  handleAddFolder = (folder) => {
-    this.setState({
-      folders: [...this.state.folders, folder],
-    });
-  };
+  // handleAddUser = (user) => {
+  //   this.setState({
+  //     users: [...this.state.users, user],
+  //   });
+  // };
 
-  handleAddNote = (note) => {
-    this.setState({
-      notes: [...this.state.notes, note],
-    });
-  };
+  // handleAddUserProfile = (profile) => {
+  //   this.setState({
+  //     userProfiles: [...this.state.userProfiles, profile],
+  //   });
+  // };
 
-  handleDeleteNote = (noteId) => {
-    this.setState({
-      notes: this.state.notes.filter((note) => note.id !== noteId),
-    });
-  };
+  // handleAddConnections = (connection) => {
+  //   this.setState({
+  //     userConnections: [...this.state.userConnections, connection],
+  //   });
+  // };
 
-  renderNavRoutes() {
-    return (
-      <>
-        {["/", "/folder/:folderId"].map((path) => (
-          <Route exact key={path} path={path} component={NoteListNav} />
-        ))}
-        <Route path="/note/:noteId" component={NotePageNav} />
-        <Route path="/add-folder" component={NotePageNav} />
-        <Route path="/add-note" component={NotePageNav} />
-      </>
-    );
-  }
+  // handleDeleteUser = (userId) => {
+  //   this.setState({
+  //     notes: this.state.users.filter((user) => user.id !== userId),
+  //   });
+  // };
 
-  renderMainRoutes() {
-    return (
-      <>
-        {["/", "/folder/:folderId"].map((path) => (
-          <Route exact key={path} path={path} component={NoteListMain} />
-        ))}
-        <Route path="/note/:noteId" component={NotePageMain} />
-        <Route path="/add-folder" component={AddFolder} />
-        <Route path="/add-note" component={AddNote} />
-      </>
-    );
-  }
+  // handleDeleteUserProfile = (userId) => {
+  //   this.setState({
+  //     notes: this.state.userProfiles.filter((profile) => profile.id !== userId),
+  //   });
+  // };
+
+  // handleDeleteUserConnection = (connectionId) => {
+  //   this.setState({
+  //     notes: this.state.userConnection.filter(
+  //       (connection) => connection.id !== connectionId
+  //     ),
+  //   });
+  // };
 
   render() {
-    const value = {
-      notes: this.state.notes,
-      folders: this.state.folders,
-      addFolder: this.handleAddFolder,
-      addNote: this.handleAddNote,
-      deleteNote: this.handleDeleteNote,
-    };
     return (
-      <ApiContext.Provider value={value}>
+      <Context.Provider value={this.state}>
         <div className="App">
-          <nav className="App__nav">{this.renderNavRoutes()}</nav>
-          <header className="App__header">
-            <h1>
-              <Link to="/">Noteful</Link>{" "}
-              <FontAwesomeIcon icon="check-double" />
-            </h1>
-          </header>
-          <main className="App__main">{this.renderMainRoutes()}</main>
+          <Header />
+          <Router history={history}>
+            <Switch>
+              <Route exact path={"/"} component={HomePage} />
+              <Route
+                exact
+                path="/registration/:registrationType"
+                component={Registration}
+              />
+              <Route exact path="/login" component={Login} />
+              <PrivateRoute
+                exact
+                path="/dashboard"
+                component={ConnectionsDashboard}
+              />
+            </Switch>
+          </Router>
         </div>
-      </ApiContext.Provider>
+      </Context.Provider>
     );
   }
 }

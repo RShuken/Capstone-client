@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 export default {
-  API_ENDPOINT: "https://shielded-castle-82864.herokuapp.com"
+  API_ENDPOINT: "http://localhost:8000",
 };
