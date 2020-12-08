@@ -1,37 +1,98 @@
-import React, { createContext } from "react";
+import React from "react";
 
-export default React.createContext({
-  currentUser: {},
-  currentUsersConnections: [],
-  currentUserProfile: {},
-  getUserAuthInfo: () => {
-    const user = JSON.parse(sessionStorage.getItem("currentUser")) || {};
-    return user;
-  },
-  users: [],
-  user_profiles: [],
-  user_connections: [],
-  addUser: () => {},
-  addProfile: () => {},
-  addConnection: () => {},
-  deleteUser: () => {},
-  deleteProfile: () => {},
-  deleteConnection: () => {},
-  updateUser: () => {},
-  updateProfile: () => {},
-  updateConnection: () => {},
-});
+const Context = React.createContext({});
+
+export default Context;
 
 
-// import React from "react";
 
-// const Context = React.createContext({
-//   // users: [],
-//   // cart: [],
-//   // treatments: [],
-//   // addUser: () => {},
-//   // addCart: () => {},
-//   //   getAllTreatments: () => {},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { createContext } from "react";
+
+// export default React.createContext({
+//   currentUser: {},
+//   currentUsersConnections: [],
+//   currentUserProfile: {},
+//   getUserAuthInfo: () => {
+//     const user = JSON.parse(sessionStorage.getItem("currentUser")) || {};
+//     return user;
+//   },
+//   users: [],
+//   user_profiles: [],
+//   user_connections: [],
+//   addUser: () => {},
+//   addProfile: () => {},
+//   addConnection: () => {},
+//   deleteUser: () => {},
+//   deleteProfile: () => {},
+//   deleteConnection: () => {},
+//   updateUser: () => {},
+//   updateProfile: () => {},
+//   updateConnection: () => {},
 // });
 
-// export default Context;
+
+
+  // handleAddUser = (user) => {
+  //   this.setState({
+  //     users: [...this.state.users, user],
+  //   });
+  // };
+
+  // handleAddUserProfile = (profile) => {
+  //   this.setState({
+  //     userProfiles: [...this.state.userProfiles, profile],
+  //   });
+  // };
+
+  // handleAddConnections = (connection) => {
+  //   this.setState({
+  //     userConnections: [...this.state.userConnections, connection],
+  //   });
+  // };
+
+  // handleDeleteUser = (userId) => {
+  //   this.setState({
+  //     notes: this.state.users.filter((user) => user.id !== userId),
+  //   });
+  // };
+
+  // handleDeleteUserProfile = (userId) => {
+  //   this.setState({
+  //     notes: this.state.userProfiles.filter((profile) => profile.id !== userId),
+  //   });
+  // };
+
+  // handleDeleteUserConnection = (connectionId) => {
+  //   this.setState({
+  //     notes: this.state.userConnection.filter(
+  //       (connection) => connection.id !== connectionId
+  //     ),
+  //   });
+  // };

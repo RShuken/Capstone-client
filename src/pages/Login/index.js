@@ -19,7 +19,7 @@ function Login() {
       .then((data) => {
         delete data.password;
         window.sessionStorage.setItem("currentUser", JSON.stringify(data));
-        appContext.currentUser = data;
+        appContext.updateUser(data);
         window.location.href = "/dashboard";
       });
   };
@@ -28,20 +28,21 @@ function Login() {
   };
   return (
     <form onSubmit={tryLogin}>
+      <label for='email'>
       <input
         required
         onChange={onFormValueChange}
         placeholder="john.doe@gmail.com"
         name="email"
         type="email"
-      />
-      <input
+      /></label>
+      <label for='password'><input
         required
         onChange={onFormValueChange}
         placeholder="super secret password"
         name="password"
         type="password"
-      />
+      /></label>
       <button type="submit">Login</button>
     </form>
   );

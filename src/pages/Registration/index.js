@@ -7,6 +7,7 @@ function Registration() {
   const { registrationType } = useParams();
   const appContext = useContext(ApiContext);
   const [formValues, setFormValues] = useState({});
+  
   const doRegisteration = (e) => {
     e.preventDefault();
     const data = { ...formValues, is_mentor: registrationType === "mentor" };

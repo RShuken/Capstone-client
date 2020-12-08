@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
-import ApiContext from "../../ApiContext";
+import React, { useContext } from 'react';
+import ApiContext from '../../ApiContext';
 
 const PublicOptions = () => (
   <>
     <li>
-      <a href="/registration/student">Find a Mentor</a>
+      <a href='/registration/student'>Find a Mentor</a>
     </li>
     <li>
-      <a href="/registration/mentor">Become a Mentor</a>
+      <a href='/registration/mentor'>Become a Mentor</a>
     </li>
     <li>
-      <a href="/login">Login</a>
+      <a href='/login'>Login</a>
     </li>
   </>
 );
@@ -18,22 +18,27 @@ const PublicOptions = () => (
 const PrivateOptions = () => {
   // this is the logout function, it calls the api logout which deletes the user key then it removes it from sessionStorage
   const signMeOut = () => {
-    fetch("/logout").then(response => {
-      response.json()
-      console.log("this is the response", response);
-    }).then(() => {
-     sessionStorage.setItem("currentUser", JSON.stringify({}))
-     window.location.href ="/"
-    })
+    fetch('/logout')
+      .then((response) => {
+        response.json();
+      })
+      .then(() => {
+        sessionStorage.setItem('currentUser', JSON.stringify({}));
+        window.location.href = '/';
+      });
   };
 
   return (
     <>
       <li>
-        <a href="/profile">Profile</a>
+        <a href='/profile'>Profile</a>
       </li>
       <li>
-        <a href="/dashboard">Dashboard</a>
+        <a href='/dashboard'>Dashboard</a>
+      </li>
+      <li>
+        {/* add the number of the pending request from the server */}
+        <a href='/connect'>Pending Requests - (8)</a>
       </li>
       <li>
         <button onClick={signMeOut}>Logout</button>
@@ -45,8 +50,8 @@ const PrivateOptions = () => {
 const Header = () => {
   const currentUser = useContext(ApiContext).getUserAuthInfo();
   return (
-    <header className="navbar">
-      <a className="navbar-brand" href="/">
+    <header className='navbar'>
+      <a className='navbar-brand' href='/'>
         Connectful
       </a>
       <ul>
