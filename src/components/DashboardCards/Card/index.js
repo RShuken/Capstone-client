@@ -63,9 +63,7 @@ const Card = ({ stateUsers }) => {
           <p>Location: {stateUsers.location}</p>
           <h2>{stateUsers.job_description}</h2>
           <label htmlFor='profile_connect_btn'>
-            <button id='profile_connect_btn' className='profile_connect_btn'>
-              <a href='/connect_message'>Connect</a>
-            </button>
+            <button id='profile_connect_btn' onClick={() => createConnection(stateUsers.id)}> Connect </button>
           </label>
           <p>1 mentor session available this week</p>
         </div>
@@ -75,6 +73,3 @@ const Card = ({ stateUsers }) => {
 };
 
 export default Card;
-
-
-// onClick={() => history.push({pathname:'/connect_message', state: {userId: stateUsers.id}})}

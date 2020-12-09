@@ -2,12 +2,14 @@ import React, { useContext, useState, useEffect } from 'react';
 import ApiContext from '../../ApiContext';
 import config from '../../config';
 
+
+
 const Connect = () => {
-  const { users, currentUser } = useContext(ApiContext);
   const [hasError, setErrors] = useState(false);
-  const { userToShowMessageFieldFor, showTextAreaFor } = useState({});
   const [stateConnection, setConnection] = useState([{}]);
+  const { currentUser } = useContext(ApiContext);
   const { accessToken, id } = currentUser;
+
 
   const fetchConnectionRequests = () => {
     fetch(`${config.API_ENDPOINT}/api/connections`, {
@@ -40,13 +42,15 @@ const Connect = () => {
       body: JSON.stringify(data),
     }).then(() => {
       fetchConnectionRequests();
+      // insert the function for count from context
     });
+    
   };
 
-  console.log(stateConnection);
   return stateConnection.map((connection) => (
     <div key={connection.id}>
-      {connection.name}
+      <p>{connection.name}</p>
+      <p>{connection.connection_message}</p>
       <button
         onClick={() =>
           changeConnectionStatus({

@@ -13,13 +13,6 @@ function UserConnect() {
   const { currentUser } = useContext(Context);
   const { accessToken } = currentUser;
 
-  console.log(location);
-
-  const testConnectWithUser = (user) => {
-    console.log('Me', userId);
-    console.log("I'm trying to connect with", userConnectionId);
-    console.log('the id of the connection row is', connectionId);
-  };
 
   const onMessageValueChange = (e) => {
     setConnectionMessage({
