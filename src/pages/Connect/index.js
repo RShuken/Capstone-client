@@ -2,14 +2,10 @@ import React, { useContext, useState, useEffect } from 'react';
 import ApiContext from '../../ApiContext';
 import config from '../../config';
 
-
-
 const Connect = () => {
-  const [hasError, setErrors] = useState(false);
   const [stateConnection, setConnection] = useState([{}]);
-  const { currentUser } = useContext(ApiContext);
+  const { currentUser, updateCount } = useContext(ApiContext);
   const { accessToken, id } = currentUser;
-
 
   const fetchConnectionRequests = () => {
     fetch(`${config.API_ENDPOINT}/api/connections`, {
@@ -22,7 +18,7 @@ const Connect = () => {
     })
       .then((data) => data.json())
       .then((resp) => setConnection(resp))
-      .catch((err) => setErrors(err));
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
@@ -41,10 +37,9 @@ const Connect = () => {
       },
       body: JSON.stringify(data),
     }).then(() => {
+      updateCount();
       fetchConnectionRequests();
-      // insert the function for count from context
     });
-    
   };
 
   return stateConnection.map((connection) => (

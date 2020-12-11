@@ -1,34 +1,36 @@
-import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
-import { Router, Switch } from "react-router";
-import { createBrowserHistory } from "history";
-import Header from "../components/Header";
-import Registration from "../pages/Registration";
-import Login from "../pages/Login";
-import HomePage from "../pages/HomePage";
-import Dashboard from "../pages/Dashboard";
-import PrivateRoute from "../components/PrivateRoute";
-import Context from "../ApiContext";
-import config from "../config";
-import "./App.css";
-import Profile from "../pages/Profile";
-import About from "../pages/About";
-import Connect from "../pages/Connect";
-import EditProfile from "../pages/EditProfile";
+import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
+import { Router, Switch } from 'react-router';
+import { createBrowserHistory } from 'history';
+import Header from '../components/Header';
+import Registration from '../pages/Registration';
+import Login from '../pages/Login';
+import HomePage from '../pages/HomePage';
+import Dashboard from '../pages/Dashboard';
+import PrivateRoute from '../components/PrivateRoute';
+import Context from '../ApiContext';
+import config from '../config';
+import './App.css';
+import Profile from '../pages/Profile';
+import About from '../pages/About';
+import Connect from '../pages/Connect';
+import EditProfile from '../pages/EditProfile';
 import ConnectMessage from '../pages/ConnnectMessage';
 
 const history = createBrowserHistory();
 
+// refractor the methods out of the state
 class App extends Component {
   state = {
     currentUser: {},
     currentUsersConnections: [],
     currentUserProfile: {},
     getUserAuthInfo: () => {
-      const user = JSON.parse(sessionStorage.getItem("currentUser")) || {};
+      const user = JSON.parse(sessionStorage.getItem('currentUser')) || {};
       return user;
     },
     users: [],
+    pendingConnectionCount: 0,
     user_profiles: [],
     user_connections: [],
     addUser: () => {},
@@ -37,17 +39,14 @@ class App extends Component {
     deleteUser: () => {},
     deleteProfile: () => {},
     deleteConnection: () => {},
-    updateUser: (currentUser) => {
-      this.setState({ ...this.state, currentUser });
-    },
     updateProfile: () => {},
     updateConnection: () => {},
   };
 
   componentDidMount() {
-    if (sessionStorage.getItem("currentUser")) {
-      const user = JSON.parse(sessionStorage.getItem("currentUser")) || {};
-      this.state.updateUser(user);
+    if (sessionStorage.getItem('currentUser')) {
+      const user = JSON.parse(sessionStorage.getItem('currentUser')) || {};
+      this.updateUser(user);
     }
 
     Promise.all([fetch(`${config.API_ENDPOINT}/api/public`)])
@@ -56,16 +55,55 @@ class App extends Component {
         return Promise.all([usersRes.json()]);
       })
       .then(([users]) => {
-        this.setState({ users });
+        const list = users.filter(
+          (user) => user.id !== this.state.currentUser.id
+        );
+        this.setState({ users: list });
       })
       .catch((error) => {
         console.error({ error });
       });
   }
 
+  updateUser = (currentUser) => {
+    this.setState({ currentUser: currentUser });
+  };
+
+  updateCount = () => {
+    fetch(`${config.API_ENDPOINT}/api/connections/count`, {
+      method: 'GET',
+      headers: {
+        authorization: this.state.currentUser.accessToken,
+        'user-id': this.state.currentUser.id,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((data) => data.json())
+      .then((resp) => {
+        this.setState({
+          pendingConnectionCount: resp.count,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  componentDidUpdate(nextProps, nextState) {
+    if (
+      this.state.currentUser.accessToken !== nextState.currentUser.accessToken
+    ) {
+      this.updateCount();
+    }
+  }
+
   render() {
     return (
-      <Context.Provider value={this.state}>
+      <Context.Provider
+        value={{
+          updateUser: this.updateUser,
+          updateCount: this.updateCount,
+          ...this.state,
+        }}
+      >
         <div className='App'>
           <Header />
           <Router history={history}>
