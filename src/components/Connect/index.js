@@ -1,15 +1,12 @@
 import React, { useState, useContext } from 'react';
 import Context from '../../ApiContext';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import config from '../../config';
 
 function UserConnect() {
   const location = useLocation();
-  const history = useHistory();
   const connectionId = location.state.connectionId;
-  const userConnectionId = location.state.userConnectionId;
   const [connectionMessage, setConnectionMessage] = useState({});
-  const userId = location.state.userId;
   const { currentUser } = useContext(Context);
   const { accessToken } = currentUser;
 
@@ -20,11 +17,11 @@ function UserConnect() {
       [e.target.name]: e.target.value,
     });
   };
-
   const connectWithUser = (id = connectionId) => {
+    const message = connectionMessage.connection_message
     const data = {
       id: connectionId,
-      connection_message: connectionMessage,
+      connection_message: message,
     };
     fetch(`${config.API_ENDPOINT}/api/connections/`, {
       method: 'PATCH',
