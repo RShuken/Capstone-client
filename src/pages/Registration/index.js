@@ -9,7 +9,7 @@ function Registration() {
   const [formValues, setFormValues] = useState({});
   const [error, setFormError] = useState({});
 
-  const doRegisteration = (e) => {
+  const doRegistration = (e) => {
     e.preventDefault();
     const data = { ...formValues, is_mentor: registrationType === 'mentor' };
     fetch(`${config.API_ENDPOINT}/signup`, {
@@ -39,8 +39,8 @@ function Registration() {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
   return (
-    <>
-      <form onSubmit={doRegisteration}>
+    <div className="registration_form">
+      <form onSubmit={doRegistration}>
         <input
           required
           onChange={onFormValueChange}
@@ -70,7 +70,7 @@ function Registration() {
         <button type='submit'>Register</button>
       </form>
       {error.msg && <div>{error.msg}</div>}
-    </>
+    </div>
   );
 }
 

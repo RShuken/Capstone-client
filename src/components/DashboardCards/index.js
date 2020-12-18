@@ -45,7 +45,7 @@ const DashboardCards = () => {
     <div className='notice' key={currentUser.id}>
       <h2>{currentUser.name}</h2>
       <p>
-        You have booked {currentUser.open_sessions} sessions out of 3 available
+        You have booked {currentUser.open_sessions} sessions
         this week
       </p>
     </div>
@@ -85,7 +85,20 @@ const DashboardCards = () => {
               </button>
               <p>1 mentor session available this week</p>
             </div>
-          ) : null}
+          ) : (
+            <div className='full_profile_box'>
+              <h2>Welcome to your Dashboard</h2>
+              <p>
+                On the right are Mentors you can connect with. You can view a
+                Mentors full profile and connect with a Mentor here. Once you
+                connect you will be promoted to send a message to the Mentor.
+                The Mentor will be able to view the Message and decide if they
+                have the time to connect. After connecting you will have access
+                to a Mentors personal contact info and you can start scheduling
+                a time.</p>
+              <p>Good luck and keep never stop learning!</p>
+            </div>
+          )}
         </div>
       </div>
     </section>

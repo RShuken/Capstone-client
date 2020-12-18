@@ -12,14 +12,12 @@ import Context from '../ApiContext';
 import config from '../config';
 import './App.css';
 import Profile from '../pages/Profile';
-import About from '../pages/About';
 import Connect from '../pages/Connect';
 import EditProfile from '../pages/EditProfile';
 import ConnectMessage from '../pages/ConnnectMessage';
 
 const history = createBrowserHistory();
 
-// refractor the methods out of the state
 class App extends Component {
   state = {
     currentUser: {},
@@ -110,7 +108,6 @@ class App extends Component {
             <Switch>
               <Route exact path={'/'} component={HomePage} />
               <Route exact path={'/profile'} component={Profile} />
-              <Route exact path={'/about'} component={About} />
               <Route exact path={'/connect'} component={Connect} />
               <Route exact path={'/edit_profile'} component={EditProfile} />
               <Route

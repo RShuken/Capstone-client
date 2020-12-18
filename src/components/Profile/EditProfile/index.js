@@ -32,7 +32,7 @@ function EditProfileComponent() {
   };
 
   return (
-    <>
+    <div className='edit_profile'>
       <form onSubmit={doEditProfile}>
         <label htmlFor='name'>
           Name *
@@ -128,7 +128,7 @@ function EditProfileComponent() {
           </button>
         </label>
       </form>
-    </>
+    </div>
   );
 }
 

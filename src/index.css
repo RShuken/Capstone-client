@@ -62,3 +62,11 @@
 .page .notice p {
   margin: 0;
 }
+
+.registration_form {
+  width: 300px;
+}
+
+.edit_profile {
+  width: 100px;
+}

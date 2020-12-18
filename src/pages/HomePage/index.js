@@ -1,22 +1,15 @@
-import React, { Component } from "react";
-import ApiContext from "../../ApiContext";
-import config from "../../config";
+import React from "react";
+
 
 function HomePage() {
   return (
     <>
       <h1>Welcome to connectful!</h1>
-      <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
-      </p>
+      <p>Learning to code is a difficult and long journey, yet no one needs to do it alone. Direct mentorship with 1 on 1 coaching will not only accelerate your journey but deepen your coding knowledge. Connectful is a platform for connecting coding learners with mentorship. Our mentors are experts in - UI UX, Frontend Development, Backend Development, DevOps, AWS and GWS.</p>
+      
+      <p>Mentorship is proven to not only drive better results for the mentee but is fulfilling for the mentor. If you are looking for help on your coding journey click 'Find a mentor' at the top. If you would like to give back to the coding community and become a mentor click 'Become a Mentor'.</p>
+      
+      <p>After registration you will be able to select from a list of mentors to connect with. Send them a message telling them about your learning journey and they will approve you if they have time. Once connected you can directly connect with your mentor via the contact information they have provided. Good luck on your coding journey! Take the road less traveled but never do it alone!</p>
     </>
   );
 }
