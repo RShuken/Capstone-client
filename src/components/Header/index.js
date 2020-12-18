@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import ApiContext from '../../ApiContext';
 
+// this component is the header and it has two views, a public and a private view. The private view is dependent on if a user is found in the local session data. The public view is what a user sees before they login or register. 
 const PublicOptions = () => (
   <>
     <li>
@@ -15,8 +16,9 @@ const PublicOptions = () => (
   </>
 );
 
+//this is the private route that takes the pending connection count and shows a user profile and dashboard options on the menu bar.
 const PrivateOptions = ({ pendingConnectionCount }) => {
-  // this is the logout function, it calls the api logout which deletes the user key then it removes it from sessionStorage
+  // this is the logout function, it calls the api logout which deletes the user key then it removes it from sessionStorage.
   const signMeOut = () => {
     fetch('/logout')
       .then((response) => {

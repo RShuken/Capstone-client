@@ -1,5 +1,6 @@
 import React from "react";
 
+// in this example I use context as a copy of the state, so when state updates, context updates. I know now why this is useful and why it's not ideal for how I use it in this scenario.
 const Context = React.createContext({});
 
 export default Context;

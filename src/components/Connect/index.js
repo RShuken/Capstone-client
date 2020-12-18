@@ -3,6 +3,7 @@ import Context from '../../ApiContext';
 import { useLocation } from 'react-router-dom';
 import config from '../../config';
 
+// in this component I use hooks and I use useLocation, this is me experimenting with new ways to access data that I need with react, even though we were not taught how to use hooks or location yet. I know it's a bit messy but it has been useful for learning. 
 function UserConnect() {
   const location = useLocation();
   const connectionId = location.state.connectionId;
@@ -10,13 +11,15 @@ function UserConnect() {
   const { currentUser } = useContext(Context);
   const { accessToken } = currentUser;
 
-
+  // this is the onChange function that sets the state equal to the input. I use the input name as the key for each input and add that to the state.
   const onMessageValueChange = (e) => {
     setConnectionMessage({
       ...connectionMessage,
       [e.target.name]: e.target.value,
     });
   };
+
+  // this is the function that handles connecting with users, it passes the ID of the connection and the id of the user as well as the connection message to a patch call. I wanted to emulate how linked in does the connection but now I realize I could have stored the connection data from the previous dashboard component and then in one simple POST request send the whole connection. Yet this method taught me more about Patch and was a good learning experience. I also push the user to a new path at the end of the function. 
   const connectWithUser = (id = connectionId) => {
     const message = connectionMessage.connection_message
     const data = {

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import ApiContext from "../../ApiContext";
 import config from "../../config";
 
+// this is the logic for login. I used hooks along with a post request for user login to the server. It also uses context to set the user in state that is used throughout the app.
 function Login() {
   const appContext = useContext(ApiContext);
   const [formValues, setFormValues] = useState({});
@@ -23,6 +24,7 @@ function Login() {
         window.location.href = "/dashboard";
       });
   };
+  // this is the on change function that takes the name of each input and sets it into state. 
   const onFormValueChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };

@@ -1,6 +1,6 @@
 import React from "react";
 
-
+// this is the home page that renders on first load of the website. 
 function HomePage() {
   return (
     <>

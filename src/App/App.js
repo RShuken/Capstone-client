@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { Router, Switch } from 'react-router';
 import { createBrowserHistory } from 'history';
 import Header from '../components/Header';
@@ -14,11 +14,13 @@ import './App.css';
 import Profile from '../pages/Profile';
 import Connect from '../pages/Connect';
 import EditProfile from '../pages/EditProfile';
-import ConnectMessage from '../pages/ConnnectMessage';
+import ConnectMessage from '../pages/ConnectMessage';
 
 const history = createBrowserHistory();
 
+// the main app component for my client
 class App extends Component {
+  //state stores the current user and public information like the mentors to match with, along with a useful helper function to get auth info for all private routes
   state = {
     currentUser: {},
     currentUsersConnections: [],
@@ -31,22 +33,15 @@ class App extends Component {
     pendingConnectionCount: 0,
     user_profiles: [],
     user_connections: [],
-    addUser: () => {},
-    addProfile: () => {},
-    addConnection: () => {},
-    deleteUser: () => {},
-    deleteProfile: () => {},
-    deleteConnection: () => {},
-    updateProfile: () => {},
-    updateConnection: () => {},
   };
 
+  //on mount check if the user is logged in by looking at local session data
   componentDidMount() {
     if (sessionStorage.getItem('currentUser')) {
       const user = JSON.parse(sessionStorage.getItem('currentUser')) || {};
       this.updateUser(user);
     }
-
+    //fetch request to receive the public data on mentors to connect with
     Promise.all([fetch(`${config.API_ENDPOINT}/api/public`)])
       .then(([usersRes]) => {
         if (!usersRes.ok) return usersRes.json().then((e) => Promise.reject(e));
@@ -62,11 +57,11 @@ class App extends Component {
         console.error({ error });
       });
   }
-
+  //update user function to update state
   updateUser = (currentUser) => {
     this.setState({ currentUser: currentUser });
   };
-
+  //updateCount checks if the user has pending connections and updates the count. 
   updateCount = () => {
     fetch(`${config.API_ENDPOINT}/api/connections/count`, {
       method: 'GET',
@@ -84,7 +79,7 @@ class App extends Component {
       })
       .catch((err) => console.log(err));
   };
-
+  //the pending invite count needs to update when the state changes, I do that here
   componentDidUpdate(nextProps, nextState) {
     if (
       this.state.currentUser.accessToken !== nextState.currentUser.accessToken
@@ -92,7 +87,7 @@ class App extends Component {
       this.updateCount();
     }
   }
-
+  //context is used to avoid prop drilling as user data and public mentor data is used in many components. Pages are routed with the react-router-dom and each page renders a component. The decision to do it this was made after talking with my mentor about production ready code, so a web designer can work on the pages, and someone else can work on the components at the same time. 
   render() {
     return (
       <Context.Provider

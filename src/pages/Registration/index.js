@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import config from '../../config';
 import ApiContext from '../../ApiContext';
 
+
+// this component is the registration component. Depending on what button the user pressed, either to be a mentor or find a mentor, the default value of is_mentor is true or false. The registration request is a POST call to the server and once done it redirects the user to the dashboard page. 
 function Registration() {
   const { registrationType } = useParams();
   const appContext = useContext(ApiContext);
@@ -35,6 +37,7 @@ function Registration() {
         setFormError(error);
       });
   };
+  // this is the input onchange function that sets the state to the values of the inputs
   const onFormValueChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };

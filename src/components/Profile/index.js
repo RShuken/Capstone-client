@@ -2,13 +2,14 @@ import React, { useContext, useState, useEffect } from 'react';
 import Context from '../../ApiContext';
 import config from '../../config';
 
+// this is the user profile component. It helped me learn how to use hooks and useEffect. I do a fetch request based on the user id, and return the user profile data, set it to state then show it to the user. 
 const UserProfile = () => {
   const [hasError, setErrors] = useState(false);
   const [stateUser, setUser] = useState({});
   const { currentUser } = useContext(Context);
   const { accessToken, id } = currentUser;
-  const [stateIsTouched, setIsTouched] = useState(false);
 
+  //this hook is similar to componentDidMount and will run if the user has an access token. I use context to grab the access token as it is saved in currentUser. 
   useEffect(() => {
     if (accessToken) {
       fetch(`${config.API_ENDPOINT}/api/user_profile/profile`, {
@@ -21,7 +22,10 @@ const UserProfile = () => {
       })
         .then((data) => data.json())
         .then((resp) => setUser(resp))
-        .catch((err) => setErrors(err));
+        .catch((err) => {
+          setErrors(err)
+          console.log(hasError)
+        });
     }
   }, [accessToken]);
 
