@@ -42,10 +42,8 @@ function UserConnect() {
 
   return (
     <div className='connection_message_box'>
-      <label for='connection_message'>
-        Write a short message for the user you want to connect with
+      <label for='connection_message'>Write a short message for the user you want to connect with</label>
         <textarea name='connection_message' onChange={onMessageValueChange} />
-      </label>
       <button onClick={() => connectWithUser()}>Send Message</button>
     </div>
   );

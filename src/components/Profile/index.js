@@ -27,12 +27,12 @@ const UserProfile = () => {
           console.log(hasError)
         });
     }
-  }, [accessToken]);
-
+  }, [accessToken,hasError,id]);
+   
+  console.log('this is the stateuser.is_mentor', stateUser.is_mentor)
   return (
     <div className='user_profile_box'>
       <h2>{stateUser.name}'s Profile</h2>
-      <h3>{stateUser.is_mentor ? 'MENTOR' : 'STUDENT'}</h3>
       <p>{stateUser.open_sessions} mentor sessions available this week</p>
       <p>{stateUser.job_title}</p>
       <p>at {stateUser.job_company}</p>

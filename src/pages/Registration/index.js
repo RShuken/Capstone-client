@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import config from '../../config';
 import ApiContext from '../../ApiContext';
 
-
-// this component is the registration component. Depending on what button the user pressed, either to be a mentor or find a mentor, the default value of is_mentor is true or false. The registration request is a POST call to the server and once done it redirects the user to the dashboard page. 
+// this component is the registration component. Depending on what button the user pressed, either to be a mentor or find a mentor, the default value of is_mentor is true or false. The registration request is a POST call to the server and once done it redirects the user to the dashboard page.
 function Registration() {
   const { registrationType } = useParams();
   const appContext = useContext(ApiContext);
@@ -42,15 +41,20 @@ function Registration() {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
   return (
-    <div className="registration_form">
-      <form onSubmit={doRegistration}>
-        <input
-          required
-          onChange={onFormValueChange}
-          placeholder='John Doe'
-          name='name'
-          type='text'
-        />
+    <>
+      <form className='connectful-form' onSubmit={doRegistration}>
+        <h2>Register as a mentor</h2>
+        <div className='connectful-formcontrol'>
+          <label htmlFor='name'>Username</label>
+          <input
+            required
+            onChange={onFormValueChange}
+            placeholder='John Doe'
+            name='name'
+            id='name'
+            type='text'
+          />
+        </div>
         <input
           required
           onChange={onFormValueChange}
@@ -70,10 +74,12 @@ function Registration() {
           <option value={2}>Available for 2 session a week</option>
           <option value={3}>Available for 3 session a week</option>
         </select>
-        <button type='submit'>Register</button>
+        <div className='action-buttons'>
+          <button type='submit'>Register</button>
+        </div>
       </form>
       {error.msg && <div>{error.msg}</div>}
-    </div>
+    </>
   );
 }
 

@@ -8,7 +8,6 @@ function EditProfileComponent() {
   const { currentUser } = useContext(ApiContext);
   const { accessToken, id } = currentUser;
 
-
   const doEditProfile = (e) => {
     e.preventDefault();
     const data = { ...formValues };
@@ -20,11 +19,10 @@ function EditProfileComponent() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    })
-      .then(() => {
-        appContext.currentUser = data;
-        window.location.href = '/profile';
-      });
+    }).then(() => {
+      appContext.currentUser = data;
+      window.location.href = '/profile';
+    });
   };
 
   const onFormValueChange = (e) => {
@@ -33,9 +31,9 @@ function EditProfileComponent() {
 
   return (
     <div className='edit_profile'>
-      <form onSubmit={doEditProfile}>
-        <label htmlFor='name'>
-          Name *
+      <form className='connectful-form' onSubmit={doEditProfile}>
+        <div className='connectful-formcontrol'>
+          <label htmlFor='name'>Name *</label>
           <input
             require
             onChange={onFormValueChange}
@@ -43,9 +41,9 @@ function EditProfileComponent() {
             name='name'
             type='text'
           />
-        </label>
-        <label htmlFor='email'>
-          Email *
+        </div>
+        <div className='connectful-formcontrol'>
+          <label htmlFor='email'>Email *</label>
           <input
             require
             onChange={onFormValueChange}
@@ -53,9 +51,9 @@ function EditProfileComponent() {
             name='email'
             type='email'
           />
-        </label>
-        <label htmlFor='profession'>
-          Profession *
+        </div>
+        <div className='connectful-formcontrol'>
+          <label htmlFor='profession'>Profession *</label>
           <select require onChange={onFormValueChange} name='profession'>
             <option value={'UI UX'}>UI UX</option>
             <option value={'Frontend Development'}>Frontend Development</option>
@@ -64,69 +62,67 @@ function EditProfileComponent() {
               Fullstack Development
             </option>
           </select>
-        </label>
-        <label htmlFor='phone'>
+        </div>
+        <div className='connectful-formcontrol'>
+          <label htmlFor='phone'>Phone</label>
           <input
             onChange={onFormValueChange}
             placeholder='805-565-4005'
             name='phone'
             type='text'
           />
-        </label>
-        <label htmlFor='discord_id'>
-          Discord ID
+        </div>
+        <div className='connectful-formcontrol'>
+          <label htmlFor='discord_id'>Discord ID</label>
           <input
             onChange={onFormValueChange}
             placeholder='Discord ID'
             name='discord_id'
             type='text'
           />
-        </label>
-        <label htmlFor='location'>
-          City
+        </div>
+        <div className='connectful-formcontrol'>
+          <label htmlFor='location'>City</label>
           <input
             onChange={onFormValueChange}
             placeholder='City'
             name='location'
             type='text'
           />
-        </label>
-        <label htmlFor='job_title'>
-          Job Title
+        </div>
+        <div className='connectful-formcontrol'>
+          <label htmlFor='job_title'>Job Title</label>
           <input
             onChange={onFormValueChange}
             placeholder='Job Title'
             name='job_title'
             type='text'
           />
-        </label>
-        <label htmlFor='job_company'>
-          Company Name
+        </div>
+        <div className='connectful-formcontrol'>
+          <label htmlFor='job_company'>Company Name</label>
           <input
             onChange={onFormValueChange}
             placeholder='Company Name'
             name='job_company'
             type='text'
           />
-        </label>
-        <label htmlFor='open_sessions'>
-          # of open sessions each week *
+        </div>
+        <div className='connectful-formcontrol'>
+          <label htmlFor='open_sessions'># of open sessions each week *</label>
           <select required onChange={onFormValueChange} name='open_sessions'>
             <option value={1}>Available for 1 session a week</option>
             <option value={2}>Available for 2 session a week</option>
             <option value={3}>Available for 3 session a week</option>
           </select>
-        </label>
-
-        <label htmlFor='description'>
-          Personal Message
-          <textarea onChange={onFormValueChange} name='description' />
-        </label>
-        <label htmlFor='submit'>
-          <button type='submit' name='submit'>
-            Submit
-          </button>
-        </label>
+        </div>
+        <div className='connectful-formcontrol'>
+          <label htmlFor='job_description'>Personal Message</label>
+          <textarea onChange={onFormValueChange} name='job_description' />
+        </div>
+        <div className='action-button'>
+          <button type='submit' name='submit'>Submit</button>
+        </div>
       </form>
     </div>
   );

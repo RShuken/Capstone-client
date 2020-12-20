@@ -61,7 +61,7 @@ class App extends Component {
   updateUser = (currentUser) => {
     this.setState({ currentUser: currentUser });
   };
-  //updateCount checks if the user has pending connections and updates the count. 
+  //updateCount checks if the user has pending connections and updates the count.
   updateCount = () => {
     fetch(`${config.API_ENDPOINT}/api/connections/count`, {
       method: 'GET',
@@ -87,7 +87,7 @@ class App extends Component {
       this.updateCount();
     }
   }
-  //context is used to avoid prop drilling as user data and public mentor data is used in many components. Pages are routed with the react-router-dom and each page renders a component. The decision to do it this was made after talking with my mentor about production ready code, so a web designer can work on the pages, and someone else can work on the components at the same time. 
+  //context is used to avoid prop drilling as user data and public mentor data is used in many components. Pages are routed with the react-router-dom and each page renders a component. The decision to do it this was made after talking with my mentor about production ready code, so a web designer can work on the pages, and someone else can work on the components at the same time.
   render() {
     return (
       <Context.Provider
@@ -97,8 +97,8 @@ class App extends Component {
           ...this.state,
         }}
       >
-        <div className='App'>
-          <Header />
+        <Header />
+        <div className='main-content'>
           <Router history={history}>
             <Switch>
               <Route exact path={'/'} component={HomePage} />

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import EditProfileComponent from '../../components/Profile/EditProfile';
 
 // this is the edit profile page that allows a user to change their profile information. 
