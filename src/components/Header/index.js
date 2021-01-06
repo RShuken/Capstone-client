@@ -5,10 +5,10 @@ import ApiContext from '../../ApiContext';
 const PublicOptions = () => (
   <>
     <li>
-      <a href='/registration/student'>Find a Mentor</a>
+      <a href='/registration/student'>Register to Find a Mentor</a>
     </li>
     <li>
-      <a href='/registration/mentor'>Become a Mentor</a>
+      <a href='/registration/mentor'>Register to Become a Mentor</a>
     </li>
     <li>
       <a href='/login'>Login</a>

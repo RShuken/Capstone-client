@@ -43,7 +43,7 @@ function Registration() {
   return (
     <>
       <form className='connectful-form' onSubmit={doRegistration}>
-        <h2>Register as a mentor</h2>
+        <h2>Register</h2>
         <div className='connectful-formcontrol'>
           <label htmlFor='name'>Username</label>
           <input
@@ -55,27 +55,42 @@ function Registration() {
             type='text'
           />
         </div>
+        <label htmlFor='email'>Email</label>
         <input
           required
           onChange={onFormValueChange}
           placeholder='john.doe@gmail.com'
           name='email'
           type='email'
+          id='email'
         />
+        <label htmlFor='password'>Password</label>
         <input
           required
           onChange={onFormValueChange}
           placeholder='super secret password'
           name='password'
           type='password'
+          id='password'
         />
-        <select required onChange={onFormValueChange} name='open_sessions'>
-          <option value={1}>Available for 1 session a week</option>
-          <option value={2}>Available for 2 session a week</option>
-          <option value={3}>Available for 3 session a week</option>
-        </select>
+        <label htmlFor='open_sessions'>
+          <select
+            required
+            onChange={onFormValueChange}
+            name='open_sessions'
+            id='open_sessions'
+          >
+            <option value={1}>Available for 1 session a week</option>
+            <option value={2}>Available for 2 session a week</option>
+            <option value={3}>Available for 3 session a week</option>
+          </select>
+        </label>
         <div className='action-buttons'>
-          <button type='submit'>Register</button>
+          <label htmlFor='register'>
+            <button type='submit' id='register'>
+              Register
+            </button>
+          </label>
         </div>
       </form>
       {error.msg && <div>{error.msg}</div>}

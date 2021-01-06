@@ -45,7 +45,7 @@ const Connect = () => {
   };
 
   return stateConnection.map((connection) => (
-    <div key={connection.id}>
+    <div className='connecting-box' key={connection.id}>
       <p>{connection.name}</p>
       <p>{connection.connection_message}</p>
       <button

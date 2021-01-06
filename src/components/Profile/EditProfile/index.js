@@ -7,7 +7,7 @@ function EditProfileComponent() {
   const [formValues, setFormValues] = useState({});
   const { currentUser } = useContext(ApiContext);
   const { accessToken, id } = currentUser;
-
+  // this does a patch request to the server to update the user profile
   const doEditProfile = (e) => {
     e.preventDefault();
     const data = { ...formValues };
@@ -24,7 +24,7 @@ function EditProfileComponent() {
       window.location.href = '/profile';
     });
   };
-
+  // this updaets the state with the user input
   const onFormValueChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };

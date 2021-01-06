@@ -8,6 +8,7 @@
 
 .navbar-brand {
   flex: 1;
+  display: none;
 }
 
 .navbar ul {
@@ -43,8 +44,8 @@
 }
 
 .page .notice {
-  background-color: #0dcaf0;
-  border-color: #0dcaf0;
+  background-color:#0086a0;
+  border-color: #0086a0;
   color: white;
   border-radius: 10px;
   opacity: 0.5;

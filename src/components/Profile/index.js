@@ -29,7 +29,6 @@ const UserProfile = () => {
     }
   }, [accessToken,hasError,id]);
    
-  console.log('this is the stateuser.is_mentor', stateUser.is_mentor)
   return (
     <div className='user_profile_box'>
       <h2>{stateUser.name}'s Profile</h2>

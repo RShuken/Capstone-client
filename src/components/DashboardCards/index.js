@@ -11,9 +11,8 @@ const DashboardCards = () => {
   const { accessToken, id } = currentUser;
   const userId = currentUser.id;
   const [openProfile, setOpenProfile] = useState({});
-
+  // this creates the connection and does a post to the server once the button is clicked
   const createConnection = (connectionId) => {
-    console.log('the connect button has been clicked, and this is the user');
     const data = {
       user_id: userId,
       connection_id: connectionId,

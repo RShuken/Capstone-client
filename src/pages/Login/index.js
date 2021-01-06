@@ -39,6 +39,7 @@ function Login() {
           placeholder='john.doe@gmail.com'
           name='email'
           type='email'
+          id='email'
         />
       </div>
       <div className='connectful-formcontrol'>
@@ -49,10 +50,12 @@ function Login() {
           placeholder='super secret password'
           name='password'
           type='password'
+          id='password'
         />
       </div>
       <div className='action-buttons'>
-        <button type='submit'>Login</button>
+        <label htmlFor='submit'>
+        <button id='submit' type='submit'>Login</button></label>
       </div>
     </form>
   );
