@@ -22,7 +22,10 @@ function Login() {
         window.sessionStorage.setItem('currentUser', JSON.stringify(data));
         appContext.updateUser(data);
         window.location.href = '/dashboard';
-      });
+      })
+      .catch((err) =>
+        console.log(err.message, 'this is the login error message')
+      );
   };
   // this is the on change function that takes the name of each input and sets it into state.
   const onFormValueChange = (e) => {
@@ -55,7 +58,10 @@ function Login() {
       </div>
       <div className='action-buttons'>
         <label htmlFor='submit'>
-        <button id='submit' type='submit'>Login</button></label>
+          <button id='submit' type='submit'>
+            Login
+          </button>
+        </label>
       </div>
     </form>
   );
