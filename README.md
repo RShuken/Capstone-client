@@ -2,6 +2,23 @@
 
 Welcome to Connectful a fullstack app that connects coding students with mentors. A user can register/login to view a dashboard full of coding mentors. The user can view the mentors profile and choose to connect with a mentor. The user can send the mentor a connection message. The mentor will see the number of pending connection request in the top menu and can choose to accept or not.
 
+# How to use
+`login` 
+First login with the following info:
+email: mentor@gmail.com
+password: test
+
+You can view a list of other mentors on the dashboard, you can view their full profile by clicking the full profile button.
+Now in the header you have a notice that you have 1 pending invitation to connect! Click the pending connection button and click accept. You have now accepted a connection. 
+
+You can now try to login from a students view, you can create your own account or use: 
+email: mentee@gmail.com
+password: test 
+
+Now scroll down to the very bottom of the mentor list and find the mentor named AVA. Click connect and write a messsage. You
+
+Now sign back out and sign in again with the mentor@gmail.com login. You will see the new pending connection request. 
+
 # Live Client & server
 
 Client: https://
