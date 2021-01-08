@@ -32,7 +32,7 @@ function Login() {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
   return (
-    <form className='connectful-form' onSubmit={tryLogin}>
+    <form className='connectful-form' onSubmit={(e) => tryLogin(e)}>
       <h2>Login to Connectful</h2>
       <div className='connectful-formcontrol'>
         <label htmlFor='email'>Email</label>

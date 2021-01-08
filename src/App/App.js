@@ -54,7 +54,10 @@ class App extends Component {
         this.setState({ users: list });
       })
       .catch((error) => {
-        console.error({ error });
+        console.log(
+          error.message,
+          'this is the error message from app.js line 57'
+        );
       });
   }
   //update user function to update state
