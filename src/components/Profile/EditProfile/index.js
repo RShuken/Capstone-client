@@ -40,6 +40,7 @@ function EditProfileComponent() {
             placeholder='John Doe'
             name='name'
             type='text'
+            id='name'
           />
         </div>
         <div className='connectful-formcontrol'>
@@ -50,11 +51,17 @@ function EditProfileComponent() {
             placeholder='john.doe@gmail.com'
             name='email'
             type='email'
+            id='email'
           />
         </div>
         <div className='connectful-formcontrol'>
           <label htmlFor='profession'>Profession *</label>
-          <select require onChange={onFormValueChange} name='profession'>
+          <select
+            require
+            onChange={onFormValueChange}
+            name='profession'
+            id='profession'
+          >
             <option value={'UI UX'}>UI UX</option>
             <option value={'Frontend Development'}>Frontend Development</option>
             <option value={'Backend Development'}>Backend Development</option>
@@ -70,6 +77,7 @@ function EditProfileComponent() {
             placeholder='805-565-4005'
             name='phone'
             type='text'
+            id='phone'
           />
         </div>
         <div className='connectful-formcontrol'>
@@ -79,6 +87,7 @@ function EditProfileComponent() {
             placeholder='Discord ID'
             name='discord_id'
             type='text'
+            id='discord_id'
           />
         </div>
         <div className='connectful-formcontrol'>
@@ -88,6 +97,7 @@ function EditProfileComponent() {
             placeholder='City'
             name='location'
             type='text'
+            id='location'
           />
         </div>
         <div className='connectful-formcontrol'>
@@ -97,6 +107,7 @@ function EditProfileComponent() {
             placeholder='Job Title'
             name='job_title'
             type='text'
+            id='job_title'
           />
         </div>
         <div className='connectful-formcontrol'>
@@ -106,11 +117,17 @@ function EditProfileComponent() {
             placeholder='Company Name'
             name='job_company'
             type='text'
+            id='job_company'
           />
         </div>
         <div className='connectful-formcontrol'>
           <label htmlFor='open_sessions'># of open sessions each week *</label>
-          <select required onChange={onFormValueChange} name='open_sessions'>
+          <select
+            required
+            onChange={onFormValueChange}
+            name='open_sessions'
+            id='open_sessions'
+          >
             <option value={1}>Available for 1 session a week</option>
             <option value={2}>Available for 2 session a week</option>
             <option value={3}>Available for 3 session a week</option>
@@ -118,10 +135,16 @@ function EditProfileComponent() {
         </div>
         <div className='connectful-formcontrol'>
           <label htmlFor='job_description'>Personal Message</label>
-          <textarea onChange={onFormValueChange} name='job_description' />
+          <textarea
+            onChange={onFormValueChange}
+            name='job_description'
+            id='job_description'
+          />
         </div>
         <div className='action-button'>
-          <button type='submit' name='submit'>Submit</button>
+          <button type='submit' name='submit'>
+            Submit
+          </button>
         </div>
       </form>
     </div>
