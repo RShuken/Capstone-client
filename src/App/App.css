@@ -11,14 +11,17 @@ body {
   padding: 0;
   background: #f5f8ff;
   font-family: 'Roboto', sans-serif;
-  min-width: 430px;
   overflow-x: hidden;
 }
 
 .main-content {
-  width: 100%;
+  width: 80%;
   margin: 40px;
-  width: 80vw;
+}
+
+.page {
+  padding: 30px;
+  margin: -64px;
 }
 
 button {
@@ -34,17 +37,17 @@ button {
   border: 1px solid transparent;
   padding: 8px 14px;
   border-radius: 0.25rem;
-  background: #368dfd;
+  background: #0300a0;
 }
 
 .btn-light {
-  color: #368dfd;
+  color: #0300a0;
   background: white;
 }
 
 .full_profile_box h2 {
- text-decoration: underline;
- text-align: center;
+  text-decoration: underline;
+  text-align: center;
 }
 .user-profile {
   padding-left: 25px;
@@ -58,8 +61,7 @@ button {
   list-style: none;
   margin: 0;
   padding: 0;
-  flex-basis: 30%;
-  min-width: 30%;
+  align-self: flex-start;
 }
 
 .connection_box {
@@ -104,7 +106,12 @@ button {
   margin-right: 30px;
   display: flex;
   flex-flow: column wrap;
-  min-width: 330px; 
+  min-width: 330px;
+}
+
+.profile_connect_btn a {
+  text-decoration: none;
+  color: white;
 }
 
 .connectful-form h2 {
@@ -166,5 +173,9 @@ button {
   .navbar-brand {
     flex: 1;
     display: block;
+  }
+
+  .page {
+    margin: 0;
   }
 }

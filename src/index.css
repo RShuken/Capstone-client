@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #368dfd;
+  background-color: #0300a0;
   display: flex;
   align-items: center;
   padding: 10px;
@@ -44,12 +44,13 @@
 }
 
 .page .notice {
-  background-color:#0086a0;
-  border-color: #0086a0;
+  background-color:#0300a0;
+  border-color: #0300a0;
   color: white;
   border-radius: 10px;
   opacity: 0.5;
   padding: 10px 20px;
+  min-width: 266px;
 }
 
 .page .notice h2 {
@@ -58,4 +59,9 @@
 
 .page .notice p {
   margin: 0;
+}
+
+.profile_connect_btn a:link {
+  text-decoration: none;
+  color: white; 
 }
