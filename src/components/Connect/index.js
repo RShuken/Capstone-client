@@ -19,6 +19,8 @@ function UserConnect() {
     });
   };
 
+  
+
   // this is the function that handles connecting with users, it passes the ID of the connection and the id of the user as well as the connection message to a patch call. I wanted to emulate how linked in does the connection but now I realize I could have stored the connection data from the previous dashboard component and then in one simple POST request send the whole connection. Yet this method taught me more about Patch and was a good learning experience. I also push the user to a new path at the end of the function. 
   const connectWithUser = (id = connectionId) => {
     const message = connectionMessage.connection_message

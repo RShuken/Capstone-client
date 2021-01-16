@@ -42,6 +42,15 @@ button {
   background: #0300a0;
 }
 
+.noConnections {
+  text-align: center;
+}
+
+.noConnections a {
+  text-decoration: none;
+  color: white;
+}
+
 .btn-light {
   color: #0300a0;
   background: white;

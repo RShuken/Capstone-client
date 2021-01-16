@@ -44,7 +44,23 @@ const Connect = () => {
     });
   };
 
-  return stateConnection.map((connection) => (
+const noConnections = () => {
+  return (
+    <div className='noConnections'>
+      <p>
+        You don't have any pending connections, why not go back to the dashboard
+        and add someone?
+      </p>
+      <button>
+        <a href='/dashboard'>Dashboard</a>
+      </button>
+    </div>
+  );
+};
+
+  console.log(stateConnection)
+  
+  return stateConnection[0] ? stateConnection.map((connection) => (
     <div className='connecting-box' key={connection.id}>
       <p>{connection.name}</p>
       <p>{connection.connection_message}</p>
@@ -66,7 +82,7 @@ const Connect = () => {
         Dismiss
       </button>
     </div>
-  ));
+  )) : noConnections();
 };
 
 export default Connect;
