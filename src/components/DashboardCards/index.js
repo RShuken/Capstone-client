@@ -41,7 +41,7 @@ const DashboardCards = () => {
   };
   //this is the user card pulling from the currentUser data from login
   const CurrentUserStatus = () => (
-    <div className='notice' key={currentUser.id}>
+    <div className='notice' key={Math.random() * 10}>
       <h2>{currentUser.name}</h2>
       <p>
         You have booked {currentUser.open_sessions} sessions
@@ -55,7 +55,7 @@ const DashboardCards = () => {
       <CurrentUserStatus />
       <div className='connection-panel'>
         <ul className='users-list'>
-          {users.map((cardUser) => (
+          {users.map((cardUser, y) => (
             <Card
               setOpenProfile={(profile) => {
                 setOpenProfile(profile);
@@ -63,6 +63,7 @@ const DashboardCards = () => {
               createConnection={createConnection}
               openProfile={openProfile}
               cardUser={cardUser}
+              key={y}
             />
           ))}
         </ul>

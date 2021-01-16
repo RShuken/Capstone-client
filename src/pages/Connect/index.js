@@ -60,8 +60,8 @@ const noConnections = () => {
 
   console.log(stateConnection)
   
-  return stateConnection[0] ? stateConnection.map((connection) => (
-    <div className='connecting-box' key={connection.id}>
+  return stateConnection[0] ? stateConnection.map((connection, y) => (
+    <div className='connecting-box' key={y}>
       <p>{connection.name}</p>
       <p>{connection.connection_message}</p>
       <button
