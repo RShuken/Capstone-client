@@ -1,11 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 import ApiContext from '../../ApiContext';
 import config from '../../config';
+import ConnectionBox from './ConnectBox/index';
 
 
 // this component was my first attempt at learning hooks in react. It handles the list of pending connections for the user. It has a get request to recieve all pending connections, then it has a patch to update the connection status to 'accepted' or 'denied' depending on which button is clicked. 
 const Connect = () => {
   const [stateConnection, setConnection] = useState([{}]);
+
   const { currentUser, updateCount } = useContext(ApiContext);
   const { accessToken, id } = currentUser;
   // this is the get request that returns the list of connections for the user. It only runs if the access token is found when the component mounts.
@@ -28,60 +30,24 @@ const Connect = () => {
       fetchConnectionRequests();
     }
   }, [accessToken]);
-  // this is the patch request for changing the match_status of the connection.
-  const changeConnectionStatus = (data) => {
-    fetch(`${config.API_ENDPOINT}/api/connections/${data.id}`, {
-      method: 'PATCH',
-      headers: {
-        authorization: accessToken,
-        'user-id': id,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    }).then(() => {
-      updateCount();
-      fetchConnectionRequests();
-    });
-  };
 
-const noConnections = () => {
-  return (
-    <div className='noConnections'>
-      <p>
-        You don't have any pending connections, why not go back to the dashboard
-        and add someone?
-      </p>
-      <button>
-        <a href='/dashboard'>Dashboard</a>
-      </button>
-    </div>
-  );
-};
+ const noConnections = () => {
+   return (
+     <div className='noConnections'>
+       <p>
+         You don't have any pending connections, why not go back to the
+         dashboard and add someone?
+       </p>
+       <button>
+         <a href='/dashboard'>Dashboard</a>
+       </button>
+     </div>
+   );
+ };
 
-  console.log(stateConnection)
   
-  return stateConnection[0] ? stateConnection.map((connection, y) => (
-    <div className='connecting-box' key={y}>
-      <p>{connection.name}</p>
-      <p>{connection.connection_message}</p>
-      <button
-        onClick={() =>
-          changeConnectionStatus({
-            match_status: 'accepted',
-            id: connection.id,
-          })
-        }
-      >
-        Connect
-      </button>
-      <button
-        onClick={() =>
-          changeConnectionStatus({ match_status: 'denied', id: connection.id })
-        }
-      >
-        Dismiss
-      </button>
-    </div>
+  return stateConnection.length !== 0 ? stateConnection.map((connection) => (
+    <ConnectionBox connection={connection} />
   )) : noConnections();
 };
 
