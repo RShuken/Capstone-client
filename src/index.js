@@ -8,7 +8,6 @@ import { BrowserRouter } from 'react-router-dom'
 import 'typeface-roboto'
 import './index.css'
 import App from './App/App'
-import './images/favicon.ico';
 
 
 library.add(faPlus, faChevronLeft, faTrashAlt, faCheckDouble)
